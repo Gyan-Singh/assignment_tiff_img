@@ -22,7 +22,6 @@ def upload():
 
     # Save the uploaded file to a directory
     file_path = uploaded_file.filename
-    uploaded_file.save(file_path)
 
     # Get the date and time for text extraction
     extraction_datetime_str = request.form['datetime']
