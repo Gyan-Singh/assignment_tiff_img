@@ -2,3 +2,5 @@ click
 Flask
 requests
 apscheduler
+flask
+pytesseract
