@@ -1,0 +1,1 @@
+# assignment_tiff_img
