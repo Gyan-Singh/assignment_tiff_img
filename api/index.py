@@ -20,8 +20,6 @@ def upload():
     # Get the uploaded file from the form
     uploaded_file = request.files['file']
 
-    # Save the uploaded file to a directory
-    file_path = uploaded_file.filename
 
     # Get the date and time for text extraction
     extraction_datetime_str = request.form['datetime']
@@ -29,14 +27,14 @@ def upload():
 
 
     # Schedule the text extraction
-    scheduler.add_job(extract_text, 'date', run_date=extraction_datetime, args=[file_path])
-    text1=extract_text(file_path)
+    scheduler.add_job(extract_text, 'date', run_date=extraction_datetime, args=[uploaded_file])
+    text1=extract_text(uploaded_file)
     return render_template("result_data.html", result=text1)
 
 # Function to extract text from the TIFF image using OCR
-def extract_text(file_path):
+def extract_text(uploaded_file):
     pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
-    image = Image.open(file_path)
+    image = Image.open(uploaded_file)
     text = pytesseract.image_to_string(image)
     return text
 
