@@ -33,6 +33,7 @@ def upload():
 
 # Function to extract text from the TIFF image using OCR
 def extract_text(uploaded_file):
+    pytesseract.pytesseract.tesseract_cmd = r'/var/task/pytesseract/pytesseract.py'
     image = Image.open(uploaded_file)
     text = pytesseract.image_to_string(image)
     return text
